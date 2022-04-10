@@ -1,0 +1,31 @@
+<div class="py-2 text-center">
+  <h4>Pregunta {{ question.question_id }}</h4>
+</div>
+<div class="py-2 text-center">
+  <h3>{{ question.question_title }}</h3>
+</div>
+<div class="py-2 text-center" *ngIf="question.question_type === 'button'">
+  <div
+    class="p-2"
+    *ngFor="let item of [].constructor(numOptions); let i = index"
+  >
+    <button
+      type="button"
+      class="btn btn-primary m-2"
+      *ngIf="question.question_options[i]"
+    >
+      {{ question.question_options[i] }}
+    </button>
+  </div>
+</div>
+<div
+  class="py-2 text-center"
+  *ngIf="question.question_type === 'chat' || question.question_type === 'text'"
+>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Respuesta</label>
+      <input type="text" class="form-control" />
+    </div>
+  </form>
+</div>

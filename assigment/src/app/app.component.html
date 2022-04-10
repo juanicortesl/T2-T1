@@ -1,6 +1,21 @@
 <div class="row justify-content-center">
   <div class="col-md-8 text-center p-4">
     <h2>Trivia taller de integracion</h2>
+    <div class="pt-2">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="joinSocket()"
+        ng
+        *ngIf="!isConnected"
+      >
+        Conectarse
+      </button>
+    </div>
+    <app-lobby *ngIf="lobby" [lobby]="lobby"> </app-lobby>
+    <h4 *ngIf="currentQuestion">Quedan {{ currentTimer }} segundos</h4>
+    <app-question *ngIf="currentQuestion" [question]="currentQuestion">
+    </app-question>
   </div>
 </div>
 
