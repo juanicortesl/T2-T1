@@ -13,9 +13,38 @@
       </button>
     </div>
     <app-lobby *ngIf="lobby" [lobby]="lobby"> </app-lobby>
-    <h4 *ngIf="currentQuestion">Quedan {{ currentTimer }} segundos</h4>
-    <app-question *ngIf="currentQuestion" [question]="currentQuestion">
-    </app-question>
+    <section *ngIf="currentQuestion">
+      <h4 *ngIf="streak.username">
+        Streak de {{ streak.username }} con {{ streak.streak }}
+      </h4>
+      <h4>Mi puntaje: {{ score }}</h4>
+      <h4>Quedan {{ currentTimer }} segundos</h4>
+      <app-question
+        [question]="currentQuestion"
+        [chatMessages]="chatMessages"
+        (answerEmitter)="sendAnswer($event)"
+      >
+      </app-question>
+    </section>
+    <section *ngIf="highScores.length > 0">
+      <h3>Highscores</h3>
+      <table class="text-left">
+        <thead>
+          <th>Place</th>
+          <th>Username</th>
+          <th>Score</th>
+        </thead>
+        <tr *ngFor="let item of highScores; let i = index">
+          <td>{{ i }}</td>
+          <td>
+            {{ item.username }}
+          </td>
+          <td>
+            {{ item.score }}
+          </td>
+        </tr>
+      </table>
+    </section>
   </div>
 </div>
 

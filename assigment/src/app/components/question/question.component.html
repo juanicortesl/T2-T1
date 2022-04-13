@@ -13,19 +13,40 @@
       type="button"
       class="btn btn-primary m-2"
       *ngIf="question.question_options[i]"
+      (click)="sendButtonAnswer(i)"
     >
       {{ question.question_options[i] }}
     </button>
   </div>
 </div>
+<div *ngIf="question.question_type === 'chat'">
+  <h4 class="text:left">Chat:</h4>
+  <table class="py-2 text-left">
+    <tr *ngFor="let item of chatMessages">
+      <td>{{ item.username }}:</td>
+      <td>
+        {{ item.message }}
+      </td>
+    </tr>
+  </table>
+</div>
+
 <div
   class="py-2 text-center"
   *ngIf="question.question_type === 'chat' || question.question_type === 'text'"
 >
-  <form>
+  <form [formGroup]="answerForm">
     <div class="form-group">
       <label for="exampleInputEmail1">Respuesta</label>
-      <input type="text" class="form-control" />
+      <input type="text" class="form-control" formControlName="answer" />
     </div>
+    <button
+      type="button"
+      class="btn btn-primary m-2"
+      (click)="sendTextAnswer()"
+      [disabled]="!answerForm.valid"
+    >
+      Enviar respuesta
+    </button>
   </form>
 </div>
