@@ -12,7 +12,8 @@ export class AppComponent {
   isConnected = false;
   currentQuestion: any;
   currentTimer = 10;
-  score = 0;
+  scores: any[] = [];
+  scoresDict: any = {};
   streak: any = {};
   highScores: any[] = [];
   chatMessages: any[] = [];
@@ -42,7 +43,8 @@ export class AppComponent {
         this.chatMessages = [];
       }
       if (data.type == 'score') {
-        this.score = data.scores['Juan Cortes'];
+        this.scoresDict = data.scores;
+        this.scores = Object.keys(data.scores);
       }
       if (data.type == 'timer') {
         this.currentTimer = data.seconds_remaining;

@@ -14,10 +14,6 @@
     </div>
     <app-lobby *ngIf="lobby" [lobby]="lobby"> </app-lobby>
     <section *ngIf="currentQuestion">
-      <h4 *ngIf="streak.username">
-        Streak de {{ streak.username }} con {{ streak.streak }}
-      </h4>
-      <h4>Mi puntaje: {{ score }}</h4>
       <h4>Quedan {{ currentTimer }} segundos</h4>
       <app-question
         [question]="currentQuestion"
@@ -45,6 +41,28 @@
         </tr>
       </table>
     </section>
+  </div>
+  <div class="col-md-4 text-center p-4" *ngIf="currentQuestion">
+    <h5 *ngIf="streak.username">
+      Streak de {{ streak.username }} con {{ streak.streak }}
+    </h5>
+    <h3>Highscores</h3>
+    <table class="text-left">
+      <thead>
+        <th>Place</th>
+        <th>Username</th>
+        <th>Score</th>
+      </thead>
+      <tr *ngFor="let item of scores; let i = index">
+        <td>{{ i }}</td>
+        <td>
+          {{ item }}
+        </td>
+        <td>
+          {{ scoresDict[item] }}
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 

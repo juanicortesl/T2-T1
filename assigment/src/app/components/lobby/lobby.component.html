@@ -4,3 +4,7 @@
 <div class="p-2 text-center">
   <h4>{{ lobby.message }}</h4>
 </div>
+<div class="p-2 text-center">
+  <h4>Jugadores:</h4>
+  <h5 *ngFor="let item of lobby.players">{{ item }}</h5>
+</div>

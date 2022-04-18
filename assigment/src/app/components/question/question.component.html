@@ -38,7 +38,12 @@
   <form [formGroup]="answerForm">
     <div class="form-group">
       <label for="exampleInputEmail1">Respuesta</label>
-      <input type="text" class="form-control" formControlName="answer" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="answer"
+        (keyup.enter)="sendTextAnswer()"
+      />
     </div>
     <button
       type="button"
