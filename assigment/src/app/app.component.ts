@@ -40,7 +40,7 @@ export class AppComponent {
         }
       }
       if (data.type == 'question') {
-        // console.log(data);
+        console.log(data);
         this.lobby = undefined;
         this.currentQuestion = data;
         this.chatMessages = [];
@@ -69,6 +69,7 @@ export class AppComponent {
         this.chatMessages.push({
           username: data.username,
           message: data.message,
+          time: new Date(),
         });
       }
     };

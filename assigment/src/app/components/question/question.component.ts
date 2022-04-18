@@ -16,7 +16,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class QuestionComponent implements OnInit {
   @Input() question: any;
   @Input() chatMessages: any;
-  numOptions = 4;
+  numOptions = 6;
   isAnswered = false;
   answerForm = new FormGroup({
     answer: new FormControl('', [Validators.required]),
@@ -26,10 +26,6 @@ export class QuestionComponent implements OnInit {
   OnInit() {
     this.isAnswered = false;
     this.answerForm.reset();
-    if (this.question.question_type === 'button') {
-      this.numOptions = Object.keys(this.question.question_options).length;
-      console.log(this.numOptions, 'NUMOPTION');
-    }
   }
 
   ngOnChanges(changes: any) {

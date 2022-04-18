@@ -24,6 +24,7 @@
   <h4 class="text:left">Chat:</h4>
   <table class="py-2 text-left">
     <tr *ngFor="let item of chatMessages">
+      <td>{{ item.time | date: "HH:mm" }}:</td>
       <td>{{ item.username }}:</td>
       <td>
         {{ item.message }}
