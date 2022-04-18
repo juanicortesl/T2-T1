@@ -14,6 +14,7 @@
       class="btn btn-primary m-2"
       *ngIf="question.question_options[i]"
       (click)="sendButtonAnswer(i)"
+      [disabled]="isAnswered"
     >
       {{ question.question_options[i] }}
     </button>
@@ -49,7 +50,9 @@
       type="button"
       class="btn btn-primary m-2"
       (click)="sendTextAnswer()"
-      [disabled]="!answerForm.valid"
+      [disabled]="
+        !answerForm.valid || (question.question_type === 'text' && isAnswered)
+      "
     >
       Enviar respuesta
     </button>

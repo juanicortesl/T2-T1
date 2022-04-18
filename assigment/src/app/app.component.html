@@ -21,6 +21,10 @@
         (answerEmitter)="sendAnswer($event)"
       >
       </app-question>
+      <h4 *ngIf="result.question_id">
+        Pregunta {{ result.question_id }}
+        {{ result.correct ? "correcta" : "incorrecta" }}
+      </h4>
     </section>
     <section *ngIf="highScores.length > 0">
       <h3>Highscores</h3>
@@ -31,7 +35,7 @@
           <th>Score</th>
         </thead>
         <tr *ngFor="let item of highScores; let i = index">
-          <td>{{ i }}</td>
+          <td>{{ i + 1 }}</td>
           <td>
             {{ item.username }}
           </td>
@@ -54,7 +58,7 @@
         <th>Score</th>
       </thead>
       <tr *ngFor="let item of scores; let i = index">
-        <td>{{ i }}</td>
+        <td>{{ i + 1 }}</td>
         <td>
           {{ item }}
         </td>

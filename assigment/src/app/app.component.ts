@@ -15,6 +15,7 @@ export class AppComponent {
   scores: any[] = [];
   scoresDict: any = {};
   streak: any = {};
+  result: any = {};
   highScores: any[] = [];
   chatMessages: any[] = [];
   constructor() {
@@ -29,6 +30,7 @@ export class AppComponent {
       if (data.type == 'accepted') this.isConnected = true;
       if (data.type == 'lobby') {
         this.streak = {};
+        this.result = {};
         this.currentQuestion = undefined;
         this.highScores = [];
         if (data.seconds_remaining > 0) {
@@ -38,6 +40,7 @@ export class AppComponent {
         }
       }
       if (data.type == 'question') {
+        // console.log(data);
         this.lobby = undefined;
         this.currentQuestion = data;
         this.chatMessages = [];
@@ -46,11 +49,14 @@ export class AppComponent {
         this.scoresDict = data.scores;
         this.scores = Object.keys(data.scores);
       }
+      if (data.type == 'result') {
+        this.result = data;
+      }
       if (data.type == 'timer') {
         this.currentTimer = data.seconds_remaining;
       }
       if (data.type == 'streak') {
-        this.streak = { username: data.username, strak: data.streak };
+        this.streak = { username: data.username, streak: data.streak };
       }
       if (data.type == 'highscore') {
         this.currentQuestion = undefined;
@@ -65,7 +71,6 @@ export class AppComponent {
           message: data.message,
         });
       }
-      console.log(data);
     };
   }
 
